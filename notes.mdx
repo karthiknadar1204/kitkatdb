@@ -1,0 +1,46 @@
+1) first setting the path to persist the vector store in the configs/path.js file
+2) The data/vectorStore.json file is the vector store. This file will store the persisted vector data. Initially, it contains an empty vectorData object and wordToIndex object:
+
+```json
+{
+    "vectorData": {},
+    "wordToIndex": {}
+}
+```
+
+3) vectorData: This object stores the vector embeddings for sentences, not for individual words. 
+Each key in vectorData is an identifier (like a sentence ID), and the value is the vector representation of that sentence.
+
+4) wordToIndex: This object maps each unique word in the vocabulary to its corresponding index in the vector.
+
+5) Initial State of vectorData and wordToIndex
+Initially:
+- vectorData is empty because no sentences or vectors have been added yet.
+- wordToIndex is empty because no vocabulary has been created yet.
+
+When the application starts and processes sentences:
+- The vocabulary is created, and wordToIndex is populated.
+- Sentences are converted to vectors, and these vectors are stored in vectorData.
+
+6) Purpose of vectorStore.json
+The vectorStore.json file is used to persist data between runs of the application.
+It stores:
+- vectorData: All stored sentence vectors.
+- wordToIndex: The vocabulary mapping.
+This ensures that when the application restarts, it doesn’t need to recreate the vectors or vocabulary. Instead, it can load them directly from the file.
+
+7) Purpose of wordToIndex
+It ensures that every word in the vocabulary is associated with a unique position (index) in a vector.
+When creating a vector for a sentence, the word's position in the vector corresponds to the index from wordToIndex.
+
+8) Purpose of vectorData
+It stores the vector embeddings for sentences. Each key in vectorData is an identifier (like a sentence ID), and the value is the vector representation of that sentence.
+
+9) How vectorData and wordToIndex are used together
+- When processing sentences, the vocabulary is created, and wordToIndex is populated.
+- Sentences are converted to vectors, and these vectors are stored in vectorData.
+- When querying the vector store, the query is converted to a vector, and this vector is compared to all vectors in vectorData using cosine similarity.
+- The results are returned in order of similarity, from most similar to least similar.
+
+10) What Does wordToIndex Store?
+It stores words as keys and their corresponding indexes as values.

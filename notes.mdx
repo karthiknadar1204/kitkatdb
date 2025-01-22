@@ -44,3 +44,9 @@ It stores the vector embeddings for sentences. Each key in vectorData is an iden
 
 10) What Does wordToIndex Store?
 It stores words as keys and their corresponding indexes as values.
+
+11) Purpose of the VectorStore Class
+The VectorStore class is the core part of the application. Its job is to:
+- Store sentence vectors (numerical representations of sentences).
+- Save and load data to/from a file (vectorStore.json) so it persists across runs.
+- Find similar vectors for a given query by comparing them mathematically.

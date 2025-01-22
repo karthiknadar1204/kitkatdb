@@ -50,3 +50,12 @@ The VectorStore class is the core part of the application. Its job is to:
 - Store sentence vectors (numerical representations of sentences).
 - Save and load data to/from a file (vectorStore.json) so it persists across runs.
 - Find similar vectors for a given query by comparing them mathematically.
+
+
+
+For strict similarity (e.g., finding duplicates):
+Look for values close to 1 (e.g., > 0.9).
+For broader similarity (e.g., related concepts):
+Use a threshold like 0.5 or 0.6.
+For weak relationships (e.g., exploratory search):
+Consider values above 0.3.
